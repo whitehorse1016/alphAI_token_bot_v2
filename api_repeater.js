@@ -45,23 +45,6 @@ export const getTokenDetailInfo = async (primaryAddress) => {
   return state.value;
 };
 
-export const getTokenDetailInfoOk = async (primaryAddress) => {
-  const key = `getTokenDetailInfo_${primaryAddress}`;
-  let state = mapApiRepeater.get(key);
-  if (!state) {
-    const tokenDetailInfo = await utils.getTokenDetailInfoOk(primaryAddress);
-    state = { value: tokenDetailInfo };
-    mapApiRepeater.set(key, state);
-    // console.log("[API Repeater] new")
-  } else {
-    // console.log("[API Repeater]", key)
-  }
-
-  state.timestamp = Date.now() + 10 * 1000;
-
-  return state.value;
-};
-
 export const getTopHolders = async (primaryAddress, decimals) => {
   const key = `getTopHolders_${primaryAddress}`;
   let state = mapApiRepeater.get(key);
