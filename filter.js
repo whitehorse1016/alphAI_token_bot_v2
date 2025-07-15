@@ -104,41 +104,44 @@ export const getScamInfo = (web3, tokenDetailInfo, checksumForContract) => {
       scamChecksum = web3.utils.keccak256(func.name).slice(0, 10);
     }
 
-    // if (func.name) {
-    // 	let prevIndex = 0
-    // 	let arr = []
-    // 	//console.log('---' + func.name + '---')
-    // 	for (var i = 0; i < func.name.length; i++) {
-    // 		let char = func.name.charAt(i);
-    // 		if (i > 0 && char === char.toUpperCase()) {
-    // 			if (func.name.charAt(i - 1) === func.name.charAt(i - 1).toUpperCase()
-    // 			&& (i < func.name.length - 1 && func.name.charAt(i + 1) === func.name.charAt(i + 1).toUpperCase())) {
-    // 				continue
-    // 			}
+    if (func.name) {
+      let prevIndex = 0;
+      let arr = [];
+      //console.log('---' + func.name + '---')
+      for (var i = 0; i < func.name.length; i++) {
+        let char = func.name.charAt(i);
+        if (i > 0 && char === char.toUpperCase()) {
+          if (
+            func.name.charAt(i - 1) === func.name.charAt(i - 1).toUpperCase() &&
+            i < func.name.length - 1 &&
+            func.name.charAt(i + 1) === func.name.charAt(i + 1).toUpperCase()
+          ) {
+            continue;
+          }
 
-    // 			let str = func.name.substring(prevIndex, i).toLowerCase()
-    // 			arr.push(str)
-    // 			// console.log(str)
+          let str = func.name.substring(prevIndex, i).toLowerCase();
+          arr.push(str);
+          // console.log(str)
 
-    // 			prevIndex = i
-    // 			continue
-    // 		}
+          prevIndex = i;
+          continue;
+        }
 
-    // 		if (i === func.name.length - 1) {
-    // 			let str = func.name.substring(prevIndex).toLowerCase()
-    // 			// console.log(str)
-    // 			arr.push(str)
-    // 		}
-    // 	}
+        if (i === func.name.length - 1) {
+          let str = func.name.substring(prevIndex).toLowerCase();
+          // console.log(str)
+          arr.push(str);
+        }
+      }
 
-    // 	for (const node of arr) {
-    // 		if (scamTerms.includes(node)) {
-    // 			scamTermCount++
-    // 		}
-    // 	}
+      for (const node of arr) {
+        if (scamTerms.includes(node)) {
+          scamTermCount++;
+        }
+      }
 
-    // 	totalTermCount += arr.length
-    // }
+      totalTermCount += arr.length;
+    }
   }
 
   if (scamCount > tempCount) {

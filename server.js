@@ -41,10 +41,10 @@ export const start = async (web3, bot) => {
 
   const port = process.env.PORT;
 
-  var options = {
-    key: fs.readFileSync(__dirname + "/../ssl/private.key", "utf8"),
-    cert: fs.readFileSync(__dirname + "/../ssl/certificate.crt", "utf8"),
-  };
+  // var options = {
+  //   key: fs.readFileSync(__dirname + "/../ssl/private.key", "utf8"),
+  //   cert: fs.readFileSync(__dirname + "/../ssl/certificate.crt", "utf8"),
+  // };
 
   console.log(`TBot API Server up and running on port ${port} !`);
 
